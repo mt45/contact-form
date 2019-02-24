@@ -1,0 +1,15 @@
+actor: ApiTester
+modules:
+    enabled:
+        - REST:
+              url: /api
+              depends: Symfony
+        - \App\Tests\Helper\Api
+        - Symfony:
+              app_path: 'src'
+              environment: 'test'
+        - \App\Tests\Helper\Db:
+            dsn: 'mysql:host=%DATABASE_HOST%;dbname=test_%DATABASE_NAME%'
+            user: '%DATABASE_USER%'
+            password: '%DATABASE_PASSWORD%'
+            truncate_table: 'contact_form'
